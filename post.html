@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.0.min.css">
+<link rel="stylesheet" href="css/homestyle.css">
+<link rel="stylesheet" href="_assets/css/jqm-demos.css">
+</head>
+<title>
+	CampusBox | Post
+</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	</div>
+	<body>
+	<div data-role="page" data-dialog="true" id="post" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+		<div data-role="header" data-theme="b">
+		<h1>Post</h1>
+		</div>
+<center>
+	<div role="main" class="ui-content">
+	<p><form action="postmsg" data-ajax="false" method="POST" >
+	<ul data-role="listview" data-inset="true">
+	<li>
+    <label for="subjectbox">Subject:</label>
+    <input name="subjectbox" id="subjectbox" onkeyup="countsub()" placeholder="upto 50 characters only" value="" type="text" required autofocus>
+	<p id="subchar">50</p>
+	<br>
+	</li>
+	<li>
+	<label for="postbox">Message:</label>
+    <textarea id="postbox" onkeyup="countmsg()" placeholder="upto 150 characters only" name="postbox"  required></textarea>
+	<p id="msgchar">150</p>
+	</li>
+	</ul>
+    <button type="submit" name="homesubmit" id="homesubmit" class="ui-shadow ui-btn ui-btn-inline ui-btn-b ui-btn-icon-left ui-icon-home ui-corner-all">Home </button>
+    <button type="submit" name="allsubmit" id="allsubmit" class="ui-shadow ui-btn ui-btn-inline ui-btn-b ui-btn-icon-right ui-icon-grid ui-corner-all"> Public </button>
+	</div>
+    </div>
+</center>
+</body>
+<script src="js/jquery.js"></script>
+<script src="_assets/js/index.js"></script>
+<script src="js/jquery.mobile-1.4.0.min.js"></script>
+
+<script type="text/javascript">
+document.onkeyup = fkey;
+
+var wasPressed = false;
+
+function fkey(e){
+        e = e || window.event;
+       if( wasPressed ) return; 
+
+        if (e.keyCode == 27) {
+             window.history.back();
+            wasPressed = true;
+        }
+ }
+
+function countsub()
+{
+    var x = document.getElementById("subchar");
+    var y = document.getElementById("subjectbox");
+    if(50-y.value.length>=0)
+    {
+    x.style.color = 'green';
+    x.innerHTML = 50-y.value.length;
+    $("#homesubmit").removeAttr("disabled");
+    $("#allsubmit").removeAttr("disabled");		
+	}
+	else
+	{
+	x.style.color = 'red';
+    x.innerHTML = 50-y.value.length;
+    $("#homesubmit").attr("disabled", "disabled");	
+    $("#allsubmit").attr("disabled", "disabled");
+	}
+}
+function countmsg()
+{
+    var x = document.getElementById("msgchar");
+    var y = document.getElementById("postbox");
+    if(150-y.value.length>=0)
+    {
+    x.style.color = 'green';
+    x.innerHTML = 150-y.value.length;
+    $("#allsubmit").removeAttr("disabled");	
+    $("#homesubmit").removeAttr("disabled");
+	}
+	else
+	{
+	x.style.color = 'red';
+    x.innerHTML = 150-y.value.length;
+    $("#homesubmit").attr("disabled", "disabled");	
+    $("#allsubmit").attr("disabled", "disabled");
+	}
+}
+
+$(document).ready( function() {
+
+$("#homesubmit").on( "click", function() { 
+if(($("#subjectbox").val())&&($("#postbox").val()))
+$("#homesubmit").html('Posting..&nbsp;<img src="images/thumbnails/search.gif"/>');
+
+$.post( "hashtags", { sub: $("#subjectbox").val(), msg: $("#postbox").val() } );
+
+});
+
+$("#allsubmit").on( "click", function() { 
+if(($("#subjectbox").val())&&($("#postbox").val()))
+$("#allsubmit").html('Posting..&nbsp;<img src="images/thumbnails/search.gif"/>');
+
+$.post( "hashtags", { sub: $("#subjectbox").val(), msg: $("#postbox").val() } );
+
+});
+
+});
+
+</script>
+</html>
+
+

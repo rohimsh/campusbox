@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="campus, chat, twitter, lan, inbox" />
+    <meta name="description" content="Get notified about the events in your college even without internet connection with CampusBox - an inbox of Campus ! ">
+    <meta name="author" content="Rohit Mishra">
+    <meta name="email-id" content="rohitmishra.nitjsr@gmail.com">
+
+<link rel="stylesheet" href="css/jquery.mobile-1.4.0.min.css">
+<link rel="stylesheet" href="css/homestyle.css">
+<link rel="stylesheet" href="_assets/css/jqm-demos.css">
+</head>
+	<div  data-role="page" id="demo-page" data-title="	CampusBox | Login">
+    <div data-role="header" data-position="fixed" data-theme="b">
+        <h1>CampusBox</h1>
+         <a href="index" data-ajax="false" data-icon="user" data-iconpos="notext"></a>
+	</div>
+	<center>
+	<a href="#popupLogin" data-rel="popup" data-position-to="window" id="opaque" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-lock ui-btn-icon-left ui-btn-a" data-transition="pop">Log in&nbsp;</a>
+<div data-role="popup" id="popupLogin" data-theme="a" data-dismissible="false" class="ui-corner-all ">
+ <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+    <form action="login" method='POST' data-ajax="false">
+        <div style="padding:10px 20px;">
+            <h3>Log in</h3>
+            <label for="loginidbox" class="ui-hidden-accessible">College Email-Id:</label>
+            <input name="loginidbox" id="loginidbox" value="" placeholder="@nitjsr.ac.in" data-theme="a" type="text" required autofocus >
+            <label for="passwordbox" class="ui-hidden-accessible">Password:</label>
+            <input name="passwordbox" id="passwordbox" value="" placeholder="Password" data-theme="a" type="password" required>
+            <button type="submit" id="loginbtn" name="loginsubmit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-lock">Log in</button>
+        </div>
+    </form>
+</div>
+<p class="copyright">
+Developed by
+<a href="//facebook.com/rohitmishra.nitjsr">
+Rohit Mishra
+</a>
+</p>
+</center>
+</div>
+
+    <script src="js/jquery.js"></script>
+	<script src="_assets/js/index.js"></script>
+	<script src="js/jquery.mobile-1.4.0.min.js"></script>
+<script>
+$(document).ready( function() {
+
+$("#loginbtn").on('click',function(){
+
+if($("#loginidbox").val() && $("#passwordbox").val())
+    $("#loginbtn").html('Checking..&nbsp;<img src="images/thumbnails/search.gif"/>');
+else
+    alert("Enter all values!");
+}); 
+
+});
+
+
+</script>
+</html>
